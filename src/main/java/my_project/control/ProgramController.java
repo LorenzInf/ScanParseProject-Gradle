@@ -1,6 +1,7 @@
 package my_project.control;
 
 import KAGO_framework.control.ViewController;
+import my_project.model.BurgerParser;
 import my_project.model.KnebiParser;
 import my_project.view.MainGUI;
 
@@ -18,6 +19,7 @@ public class ProgramController {
     // Referenzen
     private ViewController viewController;  // diese Referenz soll auf ein Objekt der Klasse viewController zeigen. Über dieses Objekt wird das Fenster gesteuert.
     private KnebiParser knebiParser;
+    private BurgerParser burgerParser;
 
     /**
      * Konstruktor
@@ -39,8 +41,7 @@ public class ProgramController {
         viewController.getSoundController().loadSound("src/main/resources/sound/yesyesyes.mp3","yes",false);
         viewController.getSoundController().loadSound("src/main/resources/sound/nonono.mp3","no",false);
         knebiParser = new KnebiParser();
-        // todo Eigener Code
-
+        burgerParser = new BurgerParser();
     }
 
     /**
@@ -50,14 +51,14 @@ public class ProgramController {
      * @return true, fallse der String ein Wort der Sprache des Parsers ist.
      */
     public boolean parseString(String input, int parserIndex){
-        switch(parserIndex){
-            case 0:
+        switch (parserIndex) {
+            case 0 -> {
                 return knebiParser.parse(input);
-            // todo Hier können weitere Parser aufgeführt werden
-            case 1:
-                return knebiParser.parse(input);
-
-            default: System.out.println("\nDebug-Info: Für diesen Index ist kein Parser definiert!");
+            }
+            case 1 -> {
+                return burgerParser.parse(input);
+            }
+            default -> System.out.println("\nDebug-Info: Für diesen Index ist kein Parser definiert!");
         }
         return false;
     }
@@ -69,16 +70,18 @@ public class ProgramController {
      * @return true, falls der Scan erfolgreich war, andernfalls false
      */
     public boolean scanString(String input, int parserIndex){
-        switch(parserIndex){
-            case 0:
+        switch (parserIndex) {
+            case 0 -> {
                 boolean result = knebiParser.getScannerResult(input);
-                System.out.println("\n- KnebiScanner-DEBUG - "+knebiParser.getScannerOutput());
+                System.out.println("\n- KnebiScanner-DEBUG - " + knebiParser.getScannerOutput());
                 return result;
-            // todo Hier können weitere Scanner aufgeführt werden.
-            case 1:
-                return knebiParser.getScannerResult(input);
-
-            default: System.out.println("\nDebug-Info: Für diesen Index ist kein Scanner definiert!");
+            }
+            case 1 -> {
+                boolean result = burgerParser.getScannerResult(input);
+                System.out.println("\n- BurgerScanner-DEBUG - " + burgerParser.getScannerOutput());
+                return result;
+            }
+            default -> System.out.println("\nDebug-Info: Für diesen Index ist kein Scanner definiert!");
         }
         return false;
     }

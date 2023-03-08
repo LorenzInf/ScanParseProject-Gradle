@@ -16,7 +16,7 @@ public class KnebiScanner extends Scanner<String,String> {
             debugOutput+="Sorry, can't scan empty String.";
             return false;
         }
-        this.tokenList = new List();
+        this.tokenList = new List<>();
         for(int i = 0; i<input.length(); i++){
             if(input.charAt(i) == 'k'){
                 this.tokenList.append(new Token(input.charAt(i),"START"));

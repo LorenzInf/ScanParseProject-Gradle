@@ -21,7 +21,7 @@ public class KnebiParser implements Parser {
                     while (scanner.getType().equals("MIDDLE")) scanner.nextToken();
                     if (scanner.getType().equals("END")) {
                         scanner.nextToken();
-                        if (scanner.getType().equals("NODATA")) return true;
+                        return scanner.getType().equals("NODATA");
                     }
                 }
             }
